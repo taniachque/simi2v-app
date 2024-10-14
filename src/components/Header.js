@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/images/logosimi.png';
-import Games from './Games';
+import GameMenu from './GameMenu';
 
 const Header = () => {
   return (
@@ -34,7 +34,7 @@ const Header = () => {
                     <a className="nav-link text-gray-700 hover:text-blue-500" href="#footer">Nuestras redes</a>
                     </li>
                     <li>
-                    <Link className="nav-link text-gray-700 hover:text-blue-500" to="/games">Juegos</Link>   
+                    <Link className="nav-link text-gray-700 hover:text-blue-500" to="/gamesmenu">Juegos</Link>   
                     </li>
                   </ul>
                 </div>

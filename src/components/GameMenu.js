@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Games = () => {
+const GameMenu = () => {
   return (
     <div>
       <h1>Hola Juegos</h1>
@@ -8,4 +8,4 @@ const Games = () => {
   );
 };
 
-export default Games;
+export default GameMenu;
