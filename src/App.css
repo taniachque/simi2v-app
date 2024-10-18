@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+.custom-font {
+  font-family: 'Text Me One', sans-serif;
+}
+
