@@ -4,6 +4,7 @@ import InfoSection from './InfoSection';
 import PhoneSection from './PhoneSection';
 import TeamSection from './TeamSection';
 import ContributorsSection from './ContributorsSection';
+import HeroForm from './HeroForm';
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <PhoneSection />
       <TeamSection />
       <ContributorsSection />
+      <HeroForm />
     </div>
   );
 };

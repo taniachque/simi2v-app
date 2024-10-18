@@ -3,7 +3,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 const Footer = () => {
   return (
-    <footer id="footer" style={{ backgroundColor: '#5dbf40' }} className="min-h-52 py-4  custom-font">
+    <footer id="footer" style={{ backgroundColor: '#5dbf40' }} className="min-h-48 py-12 custom-font">
       <div className="container">
         <div className="text-center text-3xl">
           <h2>Simi</h2>
