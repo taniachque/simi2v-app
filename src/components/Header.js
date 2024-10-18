@@ -8,7 +8,9 @@ const Header = () => {
       <nav className='bg-red'>
         <div className='container mx-auto px-4'>
             <div className='flex items-center justify-between py-4'>
-                <div className='logo-container'>
+                <div className='logo-container' style={{
+                  backgroundColor: 'white',
+                  borderRadius:'50%'}}>
                     <img src={logo} alt="Logo de Simi" className="h-10" />                
                 </div>
                 
