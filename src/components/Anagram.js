@@ -7,7 +7,7 @@ function Anagram() {
   const [shuffledWord, setShuffledWord] = useState('');
   const [guess, setGuess] = useState('');
   const [isGameOver, setIsGameOver] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('animals');
+  const [selectedCategory, setSelectedCategory] = useState('animales');
 
   useEffect(() => {
     selectRandomWord(selectedCategory);
