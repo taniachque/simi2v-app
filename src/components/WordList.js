@@ -37,6 +37,70 @@ const wordList = {
       'tiyakuy',
       'mayllakuy',
       'simp’akuy'           
+    ],
+    partes_del_cuerpo: [
+      'chaka',
+      'pupu',
+      'ñawi',
+      'maki',
+      'chaki',
+      'sinqa',
+      'ninri',
+      'uya',
+      't’usu'
+    ],
+    números: [
+      'juk', 
+      'iskay',
+      'kimsa',
+      'tawa',
+      'pichqa',
+      'suqta',
+      'qanchis',
+      'pusaq',
+      'chunka',
+      'jisq’un',
+      'chunka_jukniyuq',
+    ],
+    familia: [
+      'jatun_mama',
+      'jatun_tata' ,
+      'ñaña',
+      'tura',
+      'pana',
+      'wawqi',
+      'wawa',
+      'ipa',
+      'tata',
+      'mama'
+    ],
+    colores: [
+      'yana',
+      'yuraq',
+      'puka',
+      'q’illu',
+      'qumir',
+      'chumpi',
+      'uqi',
+      'yuraq_anqas',
+      'anqas',
+      'ch’umpi'
+    ],
+    saludos: [
+      'allin_p’unchaw',
+      'allin_sukhayay',
+      'allin_ch’isi',
+      'q’ayakama',
+      'tinkunakama'
+    ],
+    pronombres: [
+      'ñuqa',
+      'qam',
+      'pay',
+      'ñuqanchik',
+      'ñuqayku',
+      'qamkuna',
+      'paykuna'
     ]
   };
   
