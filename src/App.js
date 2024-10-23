@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header';
 import Home from './components/Home';
 import GameMenu from './components/GameMenu';
+import Anagram from './components/Anagram';
 import Footer from './components/Footer';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Routes>
       <Route path="/home" element={<Home />} />
       <Route path="/gamesmenu" element={<GameMenu />} />
+      <Route path="/anagram" element={<Anagram />} />
       </Routes>
       <Footer />
     </Router>
