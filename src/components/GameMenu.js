@@ -35,7 +35,7 @@ const GameMenu = () => {
           <h1>EMPAREJAMIENTO</h1>
           <p className='text-gray-700 text-base'>descripcion</p>
           <Link 
-          to='/home'
+          to='/MatchingGame'
           className='mt-auto bg-green-500 text-white px-4 py--2 rounded hover:bg-green-600' type="">Pukllana!</Link>
         </div>
       </div>

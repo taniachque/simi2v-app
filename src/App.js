@@ -6,6 +6,7 @@ import Home from './components/Home';
 import GameMenu from './components/GameMenu';
 import Anagram from './components/Anagram';
 import Hangman from './components/Hangman';
+import MatchingGame from './components/MatchingGame';
 import Footer from './components/Footer';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Route path="/gamesmenu" element={<GameMenu />} />
       <Route path="/anagram" element={<Anagram />} />
       <Route path="/hangman" element={<Hangman />} />
+      <Route path="/matchinggame" element={<MatchingGame />} />
       </Routes>
       <Footer />
     </Router>
