@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useEffect} from 'react';
+import winSound from '../assets/sounds/win.mp3';
+import loseSound from '../assets/sounds/lose.mp3';
 
 const GameOver = ({ isWinner, selectedWord, resetGame }) => {
+  useEffect(() => {
+    // Crear una nueva instancia de Audio basada en el resultado
+    const sound = isWinner ? new Audio(winSound) : new Audio(loseSound);
+    sound.play(); // Reproducir el sonido
+  }, [isWinner]); // Dependencia para reproducir el sonido cuando isWinner cambie}
   return (
     <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-40'>
       <div className='bg-white p-6 rounded shadow-lg text-center'>
