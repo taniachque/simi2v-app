@@ -38,7 +38,7 @@ const wordList = {
       'mayllakuy',
       'simp’akuy'           
     ],
-    partes_del_cuerpo: [
+    anatomía: [
       'chaka',
       'pupu',
       'ñawi',
