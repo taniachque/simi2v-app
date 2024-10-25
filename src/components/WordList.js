@@ -60,11 +60,11 @@ const wordList = {
       'pusaq',
       'chunka',
       'jisq’un',
-      'chunka_jukniyuq',
+      //'chunka_jukniyuq',
     ],
     familia: [
-      'jatun_mama',
-      'jatun_tata' ,
+      //'jatun_mama',
+      //'jatun_tata' ,
       'ñaña',
       'tura',
       'pana',
@@ -82,14 +82,14 @@ const wordList = {
       'qumir',
       'chumpi',
       'uqi',
-      'yuraq_anqas',
+      //'yuraq_anqas',
       'anqas',
       'ch’umpi'
     ],
     saludos: [
-      'allin_p’unchaw',
-      'allin_sukhayay',
-      'allin_ch’isi',
+      //'allin_p’unchaw',
+      //'allin_sukhayay',
+      //'allin_ch’isi',
       'q’ayakama',
       'tinkunakama'
     ],
