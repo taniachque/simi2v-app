@@ -1,9 +1,9 @@
 {
   "temas": {
     "tema1": [
-      { "id": 1, "word": "Juk", "image": "./assets/images/1.png" },
-      { "id": 2, "word": "Iskay", "image": "./assets/images/2.png" },
-      { "id": 3, "word": "Kimsa", "image": "./assets/images/3.png" }
+      { "id": 1, "word": "Juk", "image": "../assets/images/1.png" },
+      { "id": 2, "word": "Iskay", "image": "../assets/images/2.png" },
+      { "id": 3, "word": "Kimsa", "image": "../assets/images/3.png" }
     ],
     "tema2": [
       { "id": 4, "word": "Tawa", "image": "./assets/images/4.png" },
