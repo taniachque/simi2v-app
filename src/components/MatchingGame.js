@@ -97,7 +97,7 @@ const MatchingGame = () => {
               {gameData.temas[selectedTheme].map(item => (
                 <div 
                   key={item.id} 
-                  className="text-center mt-2 cursor-pointer"
+                  className="text-center text-lg mt-12 cursor-pointer bg-green-400 p-2 rounded-lg"
                   onDrop={() => handleDrop(item.id)} // Maneja el soltar sobre la palabra
                   onDragOver={(e) => e.preventDefault()} // Permite el soltar
                 >
