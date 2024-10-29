@@ -12,7 +12,7 @@ const generateRandomMatrix = (rows, cols, words) => {
     words.forEach((word) => {
         let placed = false;
         while (!placed) {
-            const direction = Math.random() < 0.5 ? 'horizontal' : 'vertical'; // Elegir dirección al azar
+            const direction = Math.random() < 0.33 ? 'horizontal' : (Math.random() < 0.5 ? 'vertical' : 'diagonal'); // Elegir dirección al azar
             const startRow = Math.floor(Math.random() * rows);
             const startCol = Math.floor(Math.random() * cols);
 
@@ -45,6 +45,20 @@ const generateRandomMatrix = (rows, cols, words) => {
                     }
                     placed = true;
                 }
+            } else if (direction === 'diagonal' && startRow + word.length <= rows && startCol + word.length <= cols) {
+                let canPlace = true;
+                for (let i = 0; i < word.length; i++) {
+                    if (matrix[startRow + i][startCol + i] !== letters[Math.floor(Math.random() * letters.length)]) {
+                        canPlace = false;
+                        break;
+                    }
+                }
+                if (canPlace) {
+                    for (let i = 0; i < word.length; i++) {
+                        matrix[startRow + i][startCol + i] = word[i]; // Colocar la palabra
+                    }
+                    placed = true;
+                }
             }
         }
     });
@@ -70,12 +84,49 @@ const WordPuzzleGame = () => {
 
     const handleMouseDown = (letter, row, col) => {
         setIsSelecting(true);
-        setSelectedLetters((prev) => [...prev, { letter, row, col }]);
+        setSelectedLetters([{ letter, row, col }]);
     };
 
     const handleMouseOver = (letter, row, col) => {
         if (isSelecting) {
-            setSelectedLetters((prev) => [...prev, { letter, row, col }]);
+            const lastSelected = selectedLetters[selectedLetters.length - 1];
+            const rowDiff = row - lastSelected.row;
+            const colDiff = col - lastSelected.col;
+
+            // Verificar si es selección horizontal, vertical o diagonal
+            if (Math.abs(rowDiff) === Math.abs(colDiff) || rowDiff === 0 || colDiff === 0) {
+                setSelectedLetters((prev) => {
+                    const newSelection = [...prev];
+                    // Añadir letras seleccionadas
+                    if (rowDiff === 0) {
+                        // Horizontal
+                        for (let i = Math.min(lastSelected.col, col); i <= Math.max(lastSelected.col, col); i++) {
+                            if (!newSelection.find(l => l.row === lastSelected.row && l.col === i)) {
+                                newSelection.push({ letter: matrix[lastSelected.row][i], row: lastSelected.row, col: i });
+                            }
+                        }
+                    } else if (colDiff === 0) {
+                        // Vertical
+                        for (let i = Math.min(lastSelected.row, row); i <= Math.max(lastSelected.row, row); i++) {
+                            if (!newSelection.find(l => l.row === i && l.col === lastSelected.col)) {
+                                newSelection.push({ letter: matrix[i][lastSelected.col], row: i, col: lastSelected.col });
+                            }
+                        }
+                    } else {
+                        // Diagonal
+                        const stepRow = rowDiff > 0 ? 1 : -1;
+                        const stepCol = colDiff > 0 ? 1 : -1;
+                        for (let i = 0; i <= Math.abs(rowDiff); i++) {
+                            const newRow = lastSelected.row + i * stepRow;
+                            const newCol = lastSelected.col + i * stepCol;
+                            if (!newSelection.find(l => l.row === newRow && l.col === newCol)) {
+                                newSelection.push({ letter: matrix[newRow][newCol], row: newRow, col: newCol });
+                            }
+                        }
+                    }
+                    return newSelection;
+                });
+            }
         }
     };
 
@@ -118,10 +169,10 @@ const WordPuzzleGame = () => {
                                     style={{
                                         backgroundColor: selectedLetters.some((l) => l.row === rowIndex && l.col === colIndex) ? 'lightblue' : 'white',
                                         cursor: 'pointer',
-                                        width: '40px', // Ancho de cada celda
-                                        height: '40px', // Alto de cada celda
-                                        textAlign: 'center', // Centrar texto
-                                        verticalAlign: 'middle', // Centrar verticalmente
+                                        width: '40px',
+                                        height: '40px',
+                                        textAlign: 'center',
+                                        verticalAlign: 'middle',
                                     }}
                                     className="border border-gray-300"
                                 >
