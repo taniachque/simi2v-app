@@ -2,13 +2,56 @@
 import React, { useEffect, useState } from "react";
 import { answerWords } from "./words"; // Asegúrate de que la ruta sea correcta
 
-const generateRandomMatrix = (rows, cols) => {
+const generateRandomMatrix = (rows, cols, words) => {
   const letters = "abcdefghijklmnopqrstuvwxyz"; // Letras para elegir
-  return Array.from({ length: rows }, () =>
-    Array.from({ length: cols }, () =>
-      letters[Math.floor(Math.random() * letters.length)]
-    )
+  const matrix = Array.from({ length: rows }, () =>
+    Array.from({ length: cols }, () => letters[Math.floor(Math.random() * letters.length)])
   );
+
+  // Intentamos colocar las palabras en la matriz
+  words.forEach((word) => {
+    let placed = false;
+    while (!placed) {
+      const direction = Math.random() < 0.5 ? 'horizontal' : 'vertical'; // Elegir dirección al azar
+      const startRow = Math.floor(Math.random() * rows);
+      const startCol = Math.floor(Math.random() * cols);
+
+      // Comprobar si la palabra cabe en la dirección elegida
+      if (direction === 'horizontal' && startCol + word.length <= cols) {
+        // Comprobar si hay espacio para colocar la palabra
+        let canPlace = true;
+        for (let i = 0; i < word.length; i++) {
+          if (matrix[startRow][startCol + i] !== letters[Math.floor(Math.random() * letters.length)]) {
+            canPlace = false;
+            break;
+          }
+        }
+        if (canPlace) {
+          for (let i = 0; i < word.length; i++) {
+            matrix[startRow][startCol + i] = word[i]; // Colocar la palabra
+          }
+          placed = true;
+        }
+      } else if (direction === 'vertical' && startRow + word.length <= rows) {
+        // Comprobar si hay espacio para colocar la palabra verticalmente
+        let canPlace = true;
+        for (let i = 0; i < word.length; i++) {
+          if (matrix[startRow + i][startCol] !== letters[Math.floor(Math.random() * letters.length)]) {
+            canPlace = false;
+            break;
+          }
+        }
+        if (canPlace) {
+          for (let i = 0; i < word.length; i++) {
+            matrix[startRow + i][startCol] = word[i]; // Colocar la palabra
+          }
+          placed = true;
+        }
+      }
+    }
+  });
+
+  return matrix;
 };
 
 const WordPuzzleGame = () => {
@@ -18,8 +61,7 @@ const WordPuzzleGame = () => {
   const [foundWords, setFoundWords] = useState([]);
 
   useEffect(() => {
-    // Generar una matriz aleatoria
-    const newMatrix = generateRandomMatrix(8, 9);
+    const newMatrix = generateRandomMatrix(8, 9, answerWords); // Generar matriz con palabras
     setMatrix(newMatrix);
   }, []);
 
@@ -36,22 +78,22 @@ const WordPuzzleGame = () => {
 
   const handleMouseUp = () => {
     setIsSelecting(false);
-    // Aquí puedes agregar la lógica para verificar si se encontró una palabra
-    // Ejemplo: verificar si las letras seleccionadas forman una palabra en wordsToFind
     const selectedWord = selectedLetters.map((l) => l.letter).join("");
     
     if (answerWords.includes(selectedWord)) {
       setFoundWords((prev) => [...prev, selectedWord]);
     }
 
-    // Reiniciar selección
     setSelectedLetters([]);
   };
 
   return (
-    <div className="p-4">
-      <h1>Word Puzzle Game</h1>
-      <div>
+    <div className="flex items-center justify-center min-h-screen flex-col">
+      <h1 className="text-2xl mb-4">Sopa de letras</h1>
+      <div className="mb-4">
+        <h2>Palabras a buscar: {answerWords.join(", ")}</h2>
+      </div>
+      <div className="mb-4">
         <h2>Palabras encontradas: {foundWords.join(", ")}</h2>
       </div>
       <table className="table-auto border-collapse border border-gray-300" onMouseLeave={() => setIsSelecting(false)}>
