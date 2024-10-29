@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import gameData from '../data/gameData.json'; 
+import { gameData } from '../data/gameData'; 
 
 const MatchingGame = () => {
   const [matchedPairs, setMatchedPairs] = useState([]);
@@ -58,12 +58,17 @@ const MatchingGame = () => {
             draggable
             onDragEnd={() => handleDrop(item.id, item.word)} // Asegúrate de que esto funcione correctamente
           >
-            <img src={item.image} alt={item.word} />
+            <img src={item.image} alt={item.word} className='w-24 h-24 object-cover' />
             <div>{item.word}</div>
           </div>
         ))}
       </div>
-      <button onClick={checkResults}>Verificar Resultados</button>
+      <button
+        onClick={checkResults}
+        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+      >
+        Verificar Resultados
+      </button>
       {gameResults && (
         <div>
           <p>Emparejamientos Correctos: {gameResults.correct}</p>
