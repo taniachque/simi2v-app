@@ -33,7 +33,7 @@ const ContributorsSection = () => {
         <div className="flex flex-wrap justify-center mt-4 mb-24">
           <div className="w-1/4 md:w-1/3 sm:w-1/2 flex items-center justify-center p-4">
             <div className="logo-elp" data-aos="zoom-in">
-              <img src={Logoelp} className="w-40 h-auto" alt="Logo Elp" />
+              <img src={Logoelp} className="w-60 h-auto" alt="Logo Elp" />
             </div>
           </div>
         </div>

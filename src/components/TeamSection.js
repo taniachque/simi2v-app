@@ -48,15 +48,15 @@ const TeamSection = () => {
   ];
 
   return (
-    <section className="container mx-auto mt-4 mb-4">
-      <div className="text-center mb-4">
-        <h2 className="text-2xl font-bold">Equipo</h2>
+    <section id="cards-section-1" style={{ backgroundColor: '#f4eefe' }} className="container mx-auto pt-2 mb-4">
+      <div className="text-center">
+        <h2 className="text-2xl font-bold mt-8">Equipo</h2>
       </div>
       <div className="flex flex-wrap justify-center">
         {teamMembers.map((member, index) => (
-          <div key={index} className="w-full md:w-1/3 my-3 px-2">
-            <div className="bg-white rounded-lg flex flex-col h-full">
-              <div className="p-6 text-center flex flex-col justify-center items-center">
+          <div key={index} className="w-full md:w-1/3 my-1 px-2">
+            <div className="rounded-lg flex flex-col h-full">
+              <div className="p-4 text-center flex flex-col justify-center items-center">
                 <img src={member.imgSrc} className="rounded-full w-32 h-32 object-cover mb-4" alt={member.name} />
                 <h5 className="text-xl font-semibold">{member.name}</h5>
                 <p className="text-gray-700">{member.role}</p>
@@ -67,7 +67,7 @@ const TeamSection = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
-                    <i className="fab fa-linkedin" aria-hidden="true"></i>
+                    <i className="fa fa-linkedin" aria-hidden="true"></i>
                   </a>
                 </div>
               </div>

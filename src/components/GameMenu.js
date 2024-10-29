@@ -4,7 +4,8 @@ import NinoLeyendo from '../assets/images/ninoleyendo.png';
 
 const GameMenu = () => {
   return (
-    <div className="flex justify-center">
+    <div className="flex flex-col items-center mt-4">
+      <h1 className="text-3xl font-bold text-center">Bienvenidos a la sección de juegos</h1>
       <div className="grid grid-cols-2 gap-4 mt-8 mb-8">
         <div className="card h-80 p-12 bg-white border border-gray-300 rounded shadow-md flex flex-col items-center">
           <img src={NinoLeyendo} alt="" className='mb-4 rounded h-32 w-auto'/>

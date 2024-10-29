@@ -2,7 +2,7 @@ import React from 'react';
 
 const CardsSection = () => {
   return (
-    <section id="cards-section" style={{ backgroundColor: '#f4eefe' }} className="mt-4 mb-4 min-h-96 py-8 text-center">
+    <section id="cards-section" style={{ backgroundColor: '#f4eefe' }} className="mt-0 mb-4 min-h-96 py-10 text-center">
       <div className="container mx-auto p-6">
         <div className="mb-6">
           <h2 className="text-2xl font-bold title-above-cards">Acerca de Simi</h2>

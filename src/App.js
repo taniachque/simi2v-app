@@ -15,7 +15,7 @@ function App() {
     <Router>
       <Header />
       <Routes>
-      <Route path="/home" element={<Home />} />
+      <Route exact path="/" element={<Home />} />
       <Route path="/gamesmenu" element={<GameMenu />} />
       <Route path="/anagram" element={<Anagram />} />
       <Route path="/hangman" element={<Hangman />} />

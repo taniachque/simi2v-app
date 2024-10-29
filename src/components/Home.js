@@ -9,7 +9,6 @@ import HeroForm from './HeroForm';
 const Home = () => {
   return (
     <div>
-      <h1>Hola inicio</h1>
       <Playstore />
       <InfoSection />
       <PhoneSection />

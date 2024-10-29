@@ -11,31 +11,31 @@ const Footer = () => {
             href="https://www.facebook.com/appsimiquechua" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="white-link"
+            className="text-white hover:text-gray-300 mx-2"
           >
-            <i className="fab fa-facebook"></i>
+            <i className="fa fa-facebook"></i>
           </a>
           <a 
             href="https://www.instagram.com/appsimiquechua/" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="white-link"
+            className="text-white hover:text-gray-300 mx-2"
           >
-            <i className="fab fa-instagram"></i>
+            <i className="fa fa-instagram"></i>
           </a>
           <a 
             href="https://www.youtube.com/channel/UCYWCAC-1g-co7okL_nzvcUQ" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="white-link"
+            className="text-white hover:text-gray-300 mx-2"
           >
-            <i className="fab fa-youtube"></i>
+            <i className="fa fa-youtube"></i>
           </a>
           <a 
             href="mailto:simiappbo@gmail.com" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="white-link"
+            className="text-white hover:text-gray-300 mx-2"
           >
             <i className="fa fa-envelope"></i>
           </a>

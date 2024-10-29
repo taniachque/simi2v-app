@@ -14,7 +14,7 @@ const Header = () => {
                     <img src={logo} alt="Logo de Simi" className="h-10" />                
                 </div>
                 
-                <Link className='nav-link' to="" style={{ color: '#f4eefe', fontWeight:'bold' }}>Simi</Link>
+                <Link className='nav-link text-2xl sm:text-2xl md:text-3xl lg:text-3xl p-2' to="" style={{ color: '#f4eefe', fontWeight:'bold' }}>Simi</Link>
 
                 <button className='navbar-toggler block lg:hidden focus:outline-none' type="button">
                     <span className='navbar-toggler-icon'></span>
@@ -23,7 +23,7 @@ const Header = () => {
                 <div className="hidden lg:flex flex-grow justify-end space-x-4" id="navbarNav">
                   <ul className="flex space-x-4">
                     <li>
-                    <Link className="nav-link text-gray-700 hover:text-blue-500" to="/home">Inicio</Link>
+                    <Link className="nav-link text-gray-700 hover:text-blue-500" to="/">Inicio</Link>
                     </li>
                     <li>
                     <a className="nav-link text-gray-700 hover:text-blue-500" href="#cards-section">Acerca de Simi</a>
