@@ -1,2 +1,2 @@
 // words.js
-export const answerWords = ["eee", "ask"];
+export const answerWords = ["misi", "ask", "allqu", "juku"];
