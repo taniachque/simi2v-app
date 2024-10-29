@@ -73,7 +73,7 @@ const WordPuzzleGame = () => {
     const [foundWords, setFoundWords] = useState([]);
 
     const initializeGame = () => {
-        const newMatrix = generateRandomMatrix(8, 9, answerWords); // Generar matriz con palabras
+        const newMatrix = generateRandomMatrix(11, 12, answerWords); // Generar matriz con palabras
         setMatrix(newMatrix);
         setFoundWords([]); // Reiniciar palabras encontradas
     };
@@ -142,49 +142,57 @@ const WordPuzzleGame = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen flex-col">
-            <h1 className="text-2xl mb-4">Sopa de letras</h1>
-            <div className="mb-4">
-                <h2>Palabras a buscar: {answerWords.join(", ")}</h2>
+      <div className="flex flex-col md:flex-row min-h-screen p-4 max-w-screen-lg mx-auto">
+          <div className="flex flex-col items-start mb-6 w-full md:w-1/3"> {/* Ajusta el ancho aquí */}
+              <h1 className="text-2xl mb-4">Sopa de letras - Qillqa jilli</h1>
+              <p className="mb-2">Busca y resalta palabras ocultas en una cuadrícula de letras en el menor tiempo posible.</p>
+              <p className="mb-2">QUE: Usqayta pakasqa simikunata tarinayki tiyan.</p>
+              <div className="bg-gray-200 p-4 rounded mb-4"> 
+                <div className="mb-4">
+                    <h2>Palabras a buscar: {answerWords.join(", ")}</h2>
+                </div>
+                <div className="mb-4">
+                    <h2>Palabras encontradas: {foundWords.join(", ")}</h2>
+                </div>
+                <button
+                    onClick={initializeGame}
+                    className="px-4 py-2 bg-blue-500 text-white rounded"
+                >
+                    Reiniciar Juego
+                </button>
             </div>
-            <div className="mb-4">
-                <h2>Palabras encontradas: {foundWords.join(", ")}</h2>
-            </div>
-            <button
-                onClick={initializeGame}
-                className="mb-4 px-4 py-2 bg-blue-500 text-white rounded"
-            >
-                Reiniciar Juego
-            </button>
-            <table className="table-auto border-collapse border border-gray-300" onMouseLeave={() => setIsSelecting(false)}>
-                <tbody>
-                    {matrix.map((rowData, rowIndex) => (
-                        <tr key={rowIndex}>
-                            {rowData.map((letter, colIndex) => (
-                                <td
-                                    key={colIndex}
-                                    onMouseDown={() => handleMouseDown(letter, rowIndex, colIndex)}
-                                    onMouseOver={() => handleMouseOver(letter, rowIndex, colIndex)}
-                                    onMouseUp={handleMouseUp}
-                                    style={{
-                                        backgroundColor: selectedLetters.some((l) => l.row === rowIndex && l.col === colIndex) ? 'lightblue' : 'white',
-                                        cursor: 'pointer',
-                                        width: '40px',
-                                        height: '40px',
-                                        textAlign: 'center',
-                                        verticalAlign: 'middle',
-                                    }}
-                                    className="border border-gray-300"
-                                >
-                                    <h3>{letter}</h3>
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
+          </div>
+          <div className="flex-grow flex items-center justify-center"> {/* Cuadrícula de letras */}
+              <table className="table-auto border-collapse border border-gray-300" onMouseLeave={() => setIsSelecting(false)}>
+                  <tbody>
+                      {matrix.map((rowData, rowIndex) => (
+                          <tr key={rowIndex}>
+                              {rowData.map((letter, colIndex) => (
+                                  <td
+                                      key={colIndex}
+                                      onMouseDown={() => handleMouseDown(letter, rowIndex, colIndex)}
+                                      onMouseOver={() => handleMouseOver(letter, rowIndex, colIndex)}
+                                      onMouseUp={handleMouseUp}
+                                      style={{
+                                          backgroundColor: selectedLetters.some((l) => l.row === rowIndex && l.col === colIndex) ? 'lightblue' : 'white',
+                                          cursor: 'pointer',
+                                          width: '40px',
+                                          height: '40px',
+                                          textAlign: 'center',
+                                          verticalAlign: 'middle',
+                                      }}
+                                      className="border border-gray-300"
+                                  >
+                                      <h3>{letter}</h3>
+                                  </td>
+                              ))}
+                          </tr>
+                      ))}
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  );
 };
 
 export default WordPuzzleGame;
