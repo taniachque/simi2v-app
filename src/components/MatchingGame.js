@@ -5,12 +5,14 @@ const MatchingGame = () => {
   const [matchedPairs, setMatchedPairs] = useState([]);
   const [selectedTheme, setSelectedTheme] = useState('tema1');
   const [gameResults, setGameResults] = useState(null);
+  const [draggedWord, setDraggedWord] = useState(null); // Estado para la palabra arrastrada
 
-  const handleDrop = (imageId, userWord) => {
+  const handleDrop = (imageId) => {
     const matched = gameData.temas[selectedTheme].find(item => item.id === imageId);
-    if (matched) {
-      // Almacena el emparejamiento con la palabra del usuario
-      setMatchedPairs(prev => [...prev, { ...matched, userWord }]); 
+    if (matched && draggedWord) {
+      // Almacena el emparejamiento con la palabra arrastrada
+      setMatchedPairs(prev => [...prev, { ...matched, userWord: draggedWord }]); 
+      setDraggedWord(null); // Reinicia la palabra arrastrada
     }
   };
 
@@ -35,18 +37,15 @@ const MatchingGame = () => {
 
   return (
     <div className="matching-game p-4">
-      {/* Título que ocupa todo el ancho */}
-      <h1 className="text-2xl font-bold mb-4 text-center">Emparejamiento  - Tinkuchispa pukllay</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center">Emparejamiento - Tinkuchispa pukllay</h1>
   
       <div className="flex flex-col md:flex-row">
-        {/* Contenedor para instrucciones y resultados */}
         <div className="md:w-1/3 mb-4 md:mr-4">
           <div className="mb-4">
-            <p> Empareja imágenes con las palabras correspondientes. Asegúrate de que coincidan y mejora tu vocabulario mientras juegas.</p>
-            <p> QUE: Kaypiqa juk dibujota juk sananpawan tinkuchinayki tiyan. Pukllasqa kay qhichwa simiykita wiñachinki. </p>
+            <p>Empareja imágenes con las palabras correspondientes. Asegúrate de que coincidan y mejora tu vocabulario mientras juegas.</p>
+            <p>QUE: Kaypiqa juk dibujota juk sananpawan tinkuchinayki tiyan. Pukllasqa kay qhichwa simiykita wiñachinki.</p>
           </div>
           
-          {/* Sección para seleccionar tema */}
           <div className="mb-4">
             <label htmlFor="category" className="block mb-2 text-base font-bold">Selecciona un tema:</label>
             <select
@@ -70,7 +69,6 @@ const MatchingGame = () => {
             Verificar Resultados
           </button>
   
-          {/* Resultados de emparejamientos */}
           {gameResults && (
             <div className="mt-4">
               <p>Emparejamientos Correctos: {gameResults.correct}</p>
@@ -79,7 +77,6 @@ const MatchingGame = () => {
           )}
         </div>
   
-        {/* Contenedor para imágenes */}
         <div className="md:w-2/3">
           <div className="flex mt-4"> 
             <div className="flex flex-col items-center w-1/2">
@@ -87,7 +84,8 @@ const MatchingGame = () => {
                 <div
                   key={item.id}
                   draggable
-                  onDragEnd={() => handleDrop(item.id, item.word)}
+                  onDragStart={() => setDraggedWord(item.word)} // Captura la palabra arrastrada
+                  onDragEnd={() => handleDrop(item.id)} // Maneja el emparejamiento
                   className="flex flex-col items-center m-2"
                 >
                   <img src={item.image} alt={item.word} className="w-24 h-24 object-cover" />
@@ -97,14 +95,17 @@ const MatchingGame = () => {
   
             <div className="flex flex-col items-center w-1/2">
               {gameData.temas[selectedTheme].map(item => (
-                <div key={item.id} className="text-center mt-2">
+                <div 
+                  key={item.id} 
+                  className="text-center mt-2 cursor-pointer"
+                  onDrop={() => handleDrop(item.id)} // Maneja el soltar sobre la palabra
+                  onDragOver={(e) => e.preventDefault()} // Permite el soltar
+                >
                   {item.word}
                 </div>
               ))}
             </div>
           </div>
-  
-
         </div>
       </div>
     </div>
