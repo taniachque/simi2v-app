@@ -7,6 +7,7 @@ import GameMenu from './components/GameMenu';
 import Anagram from './components/Anagram';
 import Hangman from './components/Hangman';
 import MatchingGame from './components/MatchingGame';
+import WordPuzzleGame from './components/WordPuzzleGame';
 import Footer from './components/Footer';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <Route path="/anagram" element={<Anagram />} />
       <Route path="/hangman" element={<Hangman />} />
       <Route path="/matchinggame" element={<MatchingGame />} />
+      <Route path="/wordpuzzlegame" element={<WordPuzzleGame />} />
       </Routes>
       <Footer />
     </Router>

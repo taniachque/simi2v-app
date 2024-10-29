@@ -28,7 +28,7 @@ const GameMenu = () => {
           <h1>Sopa de letras   - Qillqa jilli</h1>
           <p className='text-gray-700 text-base'>descripcion</p>
           <Link 
-          to='/home'
+          to='/wordpuzzlegame'
           className='mt-auto bg-green-500 text-white px-4 py--2 rounded hover:bg-green-600' type="">Pukllana!</Link>
         </div>
         <div className="card h-80 p-12 bg-white border border-gray-300 rounded shadow-md flex flex-col items-center">
