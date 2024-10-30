@@ -7,6 +7,7 @@ const MatchingGame = () => {
   const [gameResults, setGameResults] = useState(null);
   const [draggedWord, setDraggedWord] = useState(null);
   const [randomItems, setRandomItems] = useState([]);
+  const [shuffledWords, setShuffledWords] = useState([]);
 
   const getRandomItems = (array, count) => {
     const shuffled = array.sort(() => 0.5 - Math.random());
@@ -17,6 +18,11 @@ const MatchingGame = () => {
     // Al cambiar el tema, selecciona los elementos aleatorios
     const items = getRandomItems(gameData.temas[selectedTheme], 5);
     setRandomItems(items);
+
+    // Mezclar solo las palabras de los elementos seleccionados
+    const shuffledWords = items.map(item => item.word).sort(() => 0.5 - Math.random());
+    setShuffledWords(shuffledWords); // Guardar las palabras mezcladas
+
     setMatchedPairs([]); // Reinicia emparejamientos al cambiar de tema
     setGameResults(null); // Reinicia resultados
   }, [selectedTheme]);
@@ -105,14 +111,14 @@ const MatchingGame = () => {
             </div>
   
             <div className="flex justify-center w-full">
-              {randomItems.map(item => (
+              {shuffledWords.map((word, index) => (
                 <div 
-                  key={item.id} 
+                  key={index} 
                   className="text-center text-lg m-4 cursor-pointer bg-green-400 p-2 rounded-lg"
-                  onDrop={() => handleDrop(item.id)}
-                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={() => handleDrop(randomItems[index].id)} // Maneja el soltar sobre la palabra
+                  onDragOver={(e) => e.preventDefault()} // Permite el soltar
                 >
-                  {item.word}
+                  {word}
                 </div>
               ))}
             </div>
