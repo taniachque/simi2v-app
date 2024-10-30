@@ -1,25 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { gameData } from '../data/gameData'; 
 
 const MatchingGame = () => {
   const [matchedPairs, setMatchedPairs] = useState([]);
   const [selectedTheme, setSelectedTheme] = useState('tema1');
   const [gameResults, setGameResults] = useState(null);
-  const [draggedWord, setDraggedWord] = useState(null); // Estado para la palabra arrastrada
+  const [draggedWord, setDraggedWord] = useState(null);
+  const [randomItems, setRandomItems] = useState([]);
+
+  const getRandomItems = (array, count) => {
+    const shuffled = array.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  };
+
+  useEffect(() => {
+    // Al cambiar el tema, selecciona los elementos aleatorios
+    const items = getRandomItems(gameData.temas[selectedTheme], 5);
+    setRandomItems(items);
+    setMatchedPairs([]); // Reinicia emparejamientos al cambiar de tema
+    setGameResults(null); // Reinicia resultados
+  }, [selectedTheme]);
 
   const handleDrop = (imageId) => {
-    const matched = gameData.temas[selectedTheme].find(item => item.id === imageId);
+    const matched = randomItems.find(item => item.id === imageId);
     if (matched && draggedWord) {
-      // Almacena el emparejamiento con la palabra arrastrada
       setMatchedPairs(prev => [...prev, { ...matched, userWord: draggedWord }]); 
-      setDraggedWord(null); // Reinicia la palabra arrastrada
+      setDraggedWord(null);
     }
   };
 
   const handleThemeChange = (theme) => {
     setSelectedTheme(theme);
-    setMatchedPairs([]); // Reinicia emparejamientos
-    setGameResults(null); // Reinicia resultados
   };
 
   const checkResults = () => {
@@ -78,14 +89,14 @@ const MatchingGame = () => {
         </div>
   
         <div className="md:w-2/3">
-          <div className="flex mt-4"> 
-            <div className="flex flex-col items-center w-1/2">
-              {gameData.temas[selectedTheme].map(item => (
+          <div className="flex flex-col mt-4"> 
+            <div className="flex justify-center">
+              {randomItems.map(item => (
                 <div
                   key={item.id}
                   draggable
-                  onDragStart={() => setDraggedWord(item.word)} // Captura la palabra arrastrada
-                  onDragEnd={() => handleDrop(item.id)} // Maneja el emparejamiento
+                  onDragStart={() => setDraggedWord(item.word)}
+                  onDragEnd={() => handleDrop(item.id)}
                   className="flex flex-col items-center m-2"
                 >
                   <img src={item.image} alt={item.word} className="w-24 h-24 object-cover" />
@@ -93,13 +104,13 @@ const MatchingGame = () => {
               ))}
             </div>
   
-            <div className="flex flex-col items-center w-1/2">
-              {gameData.temas[selectedTheme].map(item => (
+            <div className="flex justify-center w-full">
+              {randomItems.map(item => (
                 <div 
                   key={item.id} 
-                  className="text-center text-lg mt-12 cursor-pointer bg-green-400 p-2 rounded-lg"
-                  onDrop={() => handleDrop(item.id)} // Maneja el soltar sobre la palabra
-                  onDragOver={(e) => e.preventDefault()} // Permite el soltar
+                  className="text-center text-lg m-4 cursor-pointer bg-green-400 p-2 rounded-lg"
+                  onDrop={() => handleDrop(item.id)}
+                  onDragOver={(e) => e.preventDefault()}
                 >
                   {item.word}
                 </div>
