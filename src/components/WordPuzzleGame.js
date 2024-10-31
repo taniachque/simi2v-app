@@ -143,7 +143,7 @@ const WordPuzzleGame = () => {
 
     return (
       <div className="flex flex-col md:flex-row min-h-screen p-4 max-w-screen-lg mx-auto">
-          <div className="flex flex-col items-start mb-6 w-full md:w-1/3"> {/* Ajusta el ancho aquí */}
+          <div className="flex flex-col items-start mb-6 w-full md:w-1/3">
               <h1 className="text-2xl mb-4">Sopa de letras - Qillqa jilli</h1>
               <p className="mb-2">Busca y resalta palabras ocultas en una cuadrícula de letras en el menor tiempo posible.</p>
               <p className="mb-2">QUE: Usqayta pakasqa simikunata tarinayki tiyan.</p>

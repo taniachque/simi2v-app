@@ -63,21 +63,26 @@ function Game() {
 
   return (
     <div 
-    className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-8"
-    style={{backgroundImage: `url(${fondoCielo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+      className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-8"
+      style={{ backgroundImage: `url(${fondoCielo})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
+      <h1 className='text-3xl font-bold mb-8 text-left'>Salva a Simi -  Simiman yanapay</h1>
+      <p className="text-sm mb-4 text-left">Un juego donde debes descubrir la palabra oculta letra por letra antes de que el globo de Simi se caiga.</p>
+      <p className="text-sm mb-8 text-left">QUE: Kaypi tarinayki tiyan ima sananpachus kaypi kachkan. Simita yanapayki tiyan mana globomanta urmamunanpaq.</p>
+  
       <img src={globo} alt="Globo" className="mb-4 w-64" />
-
+  
       <div className="w-full max-w-md text-center">
         <label htmlFor="word-list">Selecciona una lista de palabras: </label>
         <select id="word-list" value={selectedList} onChange={(e) => setSelectedList(e.target.value)}>
-        {Object.keys(wordList).map((key) => (
+          {Object.keys(wordList).map((key) => (
             <option key={key} value={key}>
               {key.charAt(0).toUpperCase() + key.slice(1)} {/* Capitaliza la primera letra */}
             </option>
           ))}
         </select>
       </div>
+  
       <Word selectedWord={selectedWord} guessedLetters={guessedLetters} />
       <Keyboard handleGuess={handleGuess} />
       <div className='bg-gray-300 mt-2 mb-4 py-2 px-4 rounded'>
@@ -85,6 +90,7 @@ function Game() {
         <p>Partidas ganadas: {wins}</p>
         <p>Partidas perdidas: {losses}</p>
       </div>
+      
       {isGameOver || isWinner ? (
         <GameOver 
           isWinner={isWinner} 

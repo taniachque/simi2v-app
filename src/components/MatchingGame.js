@@ -3,11 +3,12 @@ import { gameData } from '../data/gameData';
 
 const MatchingGame = () => {
   const [matchedPairs, setMatchedPairs] = useState([]);
-  const [selectedTheme, setSelectedTheme] = useState('tema1');
+  const [selectedTheme, setSelectedTheme] = useState('Numeros');
   const [gameResults, setGameResults] = useState(null);
   const [draggedWord, setDraggedWord] = useState(null);
   const [randomItems, setRandomItems] = useState([]);
   const [shuffledWords, setShuffledWords] = useState([]);
+  const [positions, setPositions] = useState({}); // Estado para las posiciones de las imágenes
 
   const getRandomItems = (array, count) => {
     const shuffled = array.sort(() => 0.5 - Math.random());
@@ -15,22 +16,24 @@ const MatchingGame = () => {
   };
 
   useEffect(() => {
-    // Al cambiar el tema, selecciona los elementos aleatorios
     const items = getRandomItems(gameData.temas[selectedTheme], 5);
     setRandomItems(items);
-
-    // Mezclar solo las palabras de los elementos seleccionados
     const shuffledWords = items.map(item => item.word).sort(() => 0.5 - Math.random());
-    setShuffledWords(shuffledWords); // Guardar las palabras mezcladas
-
-    setMatchedPairs([]); // Reinicia emparejamientos al cambiar de tema
-    setGameResults(null); // Reinicia resultados
+    setShuffledWords(shuffledWords);
+    setMatchedPairs([]);
+    setGameResults(null);
+    setPositions({}); // Reinicia posiciones
   }, [selectedTheme]);
 
-  const handleDrop = (imageId) => {
-    const matched = randomItems.find(item => item.id === imageId);
-    if (matched && draggedWord) {
-      setMatchedPairs(prev => [...prev, { ...matched, userWord: draggedWord }]); 
+  const handleDrop = (word, index) => {
+    if (draggedWord) {
+      const matched = randomItems.find(item => item.word === draggedWord);
+      if (matched) {
+        setMatchedPairs(prev => [...prev, { ...matched, userWord: draggedWord }]);
+        
+        // Actualizar la posición de la imagen
+        setPositions(prev => ({ ...prev, [index]: matched.id }));
+      }
       setDraggedWord(null);
     }
   };
@@ -42,9 +45,6 @@ const MatchingGame = () => {
   const checkResults = () => {
     const correctPairs = matchedPairs.filter(item => item.word === item.userWord).length;
     const incorrectPairs = matchedPairs.length - correctPairs;
-
-    console.log('Emparejamientos Correctos:', correctPairs);
-    console.log('Emparejamientos Incorrectos:', incorrectPairs);
 
     setGameResults({
       correct: correctPairs,
@@ -71,7 +71,7 @@ const MatchingGame = () => {
               onChange={(e) => handleThemeChange(e.target.value)}
               className="border border-gray-300 p-2 rounded w-64"
             >
-              {['tema1', 'tema2', 'tema3'].map(theme => (
+              {['Numeros', 'Saludos', 'Animales', 'Familia', 'Anatomia', 'Pronombres'].map(theme => (
                 <option key={theme} value={theme}>
                   {theme.charAt(0).toUpperCase() + theme.slice(1)}
                 </option>
@@ -102,10 +102,12 @@ const MatchingGame = () => {
                   key={item.id}
                   draggable
                   onDragStart={() => setDraggedWord(item.word)}
-                  onDragEnd={() => handleDrop(item.id)}
                   className="flex flex-col items-center m-2"
                 >
-                  <img src={item.image} alt={item.word} className="w-24 h-24 object-cover" />
+                  {/* No mostrar imagen si ya ha sido emparejada */}
+                  {!Object.values(positions).includes(item.id) && (
+                    <img src={item.image} alt={item.word} className="w-24 h-24 object-cover" />
+                  )}
                 </div>
               ))}
             </div>
@@ -115,10 +117,18 @@ const MatchingGame = () => {
                 <div 
                   key={index} 
                   className="text-center text-lg m-4 cursor-pointer bg-green-400 p-2 rounded-lg"
-                  onDrop={() => handleDrop(randomItems[index].id)} // Maneja el soltar sobre la palabra
-                  onDragOver={(e) => e.preventDefault()} // Permite el soltar
+                  onDrop={() => handleDrop(word, index)}
+                  onDragOver={(e) => e.preventDefault()} 
                 >
                   {word}
+                  {/* Mostrar la imagen en la posición correcta si ha sido emparejada */}
+                  {positions[index] && (
+                    <img
+                      src={randomItems.find(item => item.id === positions[index]).image}
+                      alt={word}
+                      className="absolute w-24 h-24 object-cover" 
+                    />
+                  )}
                 </div>
               ))}
             </div>

@@ -13,7 +13,6 @@ const GameMenu = () => {
         <div className="card h-80 p-12 bg-white border border-gray-300 rounded shadow-md flex flex-col items-center">
           <img src={Anagrama} alt="" className='mb-4 rounded h-32 w-auto'/>
           <h1>Anagrama - T’ikraspa pukllay</h1>
-          <p className='text-gray-700 text-base'>descripcion</p>
           <Link 
           to='/Anagram'
           className='mt-auto bg-green-500 text-white px-4 py--2 rounded hover:bg-green-600' type="">Pukllana!</Link>
@@ -22,7 +21,6 @@ const GameMenu = () => {
           <img src={AyudaSimi} alt="" className='mb-4 rounded h-32 w-auto'/>
           <h1>Salva a Simi - Simiman yanapay!
           </h1>
-          <p className='text-gray-700 text-base'>descripcion</p>
           <Link 
           to='/Hangman'
           className='mt-auto bg-green-500 text-white px-4 py--2 rounded hover:bg-green-600' type="">Pukllana!</Link>
@@ -30,7 +28,6 @@ const GameMenu = () => {
         <div className="card h-80 p-12 bg-white border border-gray-300 rounded shadow-md flex flex-col items-center">
           <img src={SopadeLetras} alt="" className='mb-4 rounded h-32 w-auto'/>
           <h1>Sopa de letras   - Qillqa jilli</h1>
-          <p className='text-gray-700 text-base'>descripcion</p>
           <Link 
           to='/wordpuzzlegame'
           className='mt-auto bg-green-500 text-white px-4 py--2 rounded hover:bg-green-600' type="">Pukllana!</Link>
@@ -38,7 +35,6 @@ const GameMenu = () => {
         <div className="card h-80 p-12 bg-white border border-gray-300 rounded shadow-md flex flex-col items-center">
           <img src={EmparejarPalabras} alt="" className='mb-4 rounded h-32 w-auto'/>
           <h1>Emparejamiento  - Tinkuchispa pukllay</h1>
-          <p className='text-gray-700 text-base'>descripcion</p>
           <Link 
           to='/MatchingGame'
           className='mt-auto bg-green-500 text-white px-4 py--2 rounded hover:bg-green-600' type="">Pukllana!</Link>
